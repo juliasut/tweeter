@@ -24,7 +24,7 @@ form div {
 }
 
 form label {
-  font:xx-large;
+  font-weight: bold;
 }
 
 form button {
@@ -37,4 +37,8 @@ form button {
 
 .counter {
   font-family: "Bungee", "sans-serif";
+}
+
+.invalid {
+  color: red;
 }
