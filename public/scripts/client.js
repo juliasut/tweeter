@@ -4,26 +4,15 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// use timeago.format(new Date()) to set the time programatically;
 
-// function to create new DOM node $tweet for every tweet post (from initial-tweets.json):
-// {
-//   "user": {
-//     "name": "Newton",
-//     "avatars": "https://i.imgur.com/73hZDYK.png",
-//       "handle": "@SirIsaac"
-//     },
-//   "content": {
-//       "text": "If I have seen further it is by standing on the shoulders of giants"
-//     },
-//   "created_at": 1461116232227
-// }
+// use timeago.format(new Date()) to set the time programatically;
 
 $(document).ready(function () {
   
 
+// AJAX to POST tweets to the server from initial-tweets.js
 const createTweetElement = (tweet) => {
-  //HTML for new node:
+  //HTML for new DOM node:
   let $tweet = $(`
   <article class="tweet">
   <header>
@@ -33,7 +22,6 @@ const createTweetElement = (tweet) => {
     </div>
     <span class="user-id">${tweet.user.handle}</span>
   </header>
-
   <p>${tweet.content.text}</p>
   <hr>
   <footer>
@@ -50,31 +38,7 @@ const createTweetElement = (tweet) => {
 };
 
 
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-]
-
+// attaches new tweet on top of the feed
 const renderTweets = (tweets) => {
   for (const tweet of tweets) {
     $tweet = createTweetElement(tweet);
@@ -82,14 +46,31 @@ const renderTweets = (tweets) => {
   }
 }
 
-renderTweets(data);
 
+// event handler for the form
 $('form').on('submit', function(event) {
-  // stops HTML from running post req and reloading the whole page
+  // stops HTML from running post request and reloading the whole page
   event.preventDefault();
-
-  // formats data for the server as a query string 
+  // formats data for the server in the format of query string 
   const urlEncodedData = $(this).serialize();
-
 })
+
+
+// AJAX to fetch (GET) data from the server
+const loadTweets = function() {
+  $.ajax({
+    url: '/tweets',
+    method: 'GET',
+    success: (tweets) => {
+      renderTweets(tweets);
+    },
+    error: (err) => {
+      console.error(err);
+    }
+  });
+}
+
+loadTweets();
+
+
 });
