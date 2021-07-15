@@ -20,7 +20,11 @@ form div {
   border: none;
   border-bottom: 0.25em solid #545149;
   background-color: #f4f1ec;
-  height: 1em;
+  height: 1,5em
+}
+
+#tweet-text:focus-visible {
+  outline: none;
 }
 
 form label {
