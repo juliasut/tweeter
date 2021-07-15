@@ -71,12 +71,27 @@ $('form').on('submit', function(event) {
   // formats data for the server in the format of query string 
   const urlEncodedData = $(this).serialize();
 
-  // validate input present and within 140 characters
-  let charCount = $('#tweet-text').val().length;
-  if (!charCount) return alert('Please do tweet!');
-  if (charCount > 140) return alert('Please tweet within 140 characters!')
+  // validate input to be present and within 140 characters
+  if ($('textarea').val().length === 0) return alert('Please do tweet!');
+  if ($('textarea').val().length > 140) return alert('Please tweet within 140 characters!')
 
 
-})
+  // posts new tweet to the feed without refreshing the page
+  // clears the input field
+  $.ajax({
+    url: '/tweets',
+    method: 'POST',
+    data: urlEncodedData,
+    success: (data) => {
+      loadTweets(data);
+      $('textarea').val('');
+      $('output').val(140);
+    },
+    error: (err) => {
+      console.error(err);
+    }
+  });
 
 });
+
+}); 
