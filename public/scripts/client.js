@@ -46,6 +46,9 @@ $(document).ready(function () {
 
   // Attach new tweet on top of the tweet-container
   const renderTweets = (tweets) => {
+    // Empty the feed first the load one with a new tweet - avoid repetition of an old feed
+    $('#tweets-container').empty();
+
     for (const tweet of tweets) {
       $tweet = createTweetElement(tweet);
       $('#tweets-container').prepend($tweet); 
