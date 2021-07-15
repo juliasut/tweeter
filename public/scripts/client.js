@@ -4,21 +4,38 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+// function to create new DOM node $tweet for every tweet post (from initial-tweets.json):
+// {
+//   "user": {
+//     "name": "Newton",
+//     "avatars": "https://i.imgur.com/73hZDYK.png",
+//       "handle": "@SirIsaac"
+//     },
+//   "content": {
+//       "text": "If I have seen further it is by standing on the shoulders of giants"
+//     },
+//   "created_at": 1461116232227
+// }
+
+$(document).ready(function () {
+  
+
 const createTweetElement = (tweet) => {
 
-  const $tweet = $(`<article class="tweet">
+  const $tweet = $(`
+  <article class="tweet">
   <header>
     <div>
-      <img src="https://i.imgur.com/nlhLi3I.png">
-      <span>Katy Perry</span>
+      <img src="${tweet.user.avatars}">
+      <span>${tweet.user.name}</span>
     </div>
-    <span class="user-id">@userId</span>
+    <span class="user-id">${tweet.user.handle}</span>
   </header>
 
-  <p>This is the latest tweet showing up.</p>
+  <p>${tweet.content.text}</p>
   <hr>
   <footer>
-    <span>created 10 days ago</span>
+    <span>${tweet.created_at}</span>
     <span>
       <i class="fas fa-flag"></i>
       <i class="fas fa-retweet"></i>
@@ -29,3 +46,23 @@ const createTweetElement = (tweet) => {
 
  return $tweet;
 };
+
+
+const tweetData = {
+  "user": {
+    "name": "Newton",
+    "avatars": "https://i.imgur.com/73hZDYK.png",
+    "handle": "@SirIsaac"
+  },
+  "content": {
+    "text": "If I have seen further it is by standing on the shoulders of giants"
+  },
+  "created_at": 1461116232227
+}
+
+const $tweet = createTweetElement(tweetData);
+
+// Test / driver code (temporary)
+console.log($tweet); // to see what it looks like
+$('#tweets-container').prepend($tweet); 
+});
