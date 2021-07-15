@@ -4,6 +4,8 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+// use timeago.format(new Date()) to set the time programatically;
+
 // function to create new DOM node $tweet for every tweet post (from initial-tweets.json):
 // {
 //   "user": {
@@ -35,7 +37,7 @@ const createTweetElement = (tweet) => {
   <p>${tweet.content.text}</p>
   <hr>
   <footer>
-    <span>${tweet.created_at}</span>
+    <span>${timeago.format(tweet.created_at)}  </span>
     <span>
       <i class="fas fa-flag"></i>
       <i class="fas fa-retweet"></i>
