@@ -38,6 +38,7 @@ const createTweetElement = (tweet) => {
 };
 
 
+
 // attaches new tweet on top of the feed
 const renderTweets = (tweets) => {
   for (const tweet of tweets) {
@@ -47,16 +48,7 @@ const renderTweets = (tweets) => {
 }
 
 
-// event handler for the form
-$('form').on('submit', function(event) {
-  // stops HTML from running post request and reloading the whole page
-  event.preventDefault();
-  // formats data for the server in the format of query string 
-  const urlEncodedData = $(this).serialize();
-})
-
-
-// AJAX to fetch (GET) data from the server
+// AJAX to fetch (GET) data from the server and receive JSON with array of tweets
 const loadTweets = function() {
   $.ajax({
     url: '/tweets',
@@ -72,5 +64,19 @@ const loadTweets = function() {
 
 loadTweets();
 
+// event handler for the new tweet form submission
+$('form').on('submit', function(event) {
+  // stops HTML from running post request and reloading the whole page
+  event.preventDefault();
+  // formats data for the server in the format of query string 
+  const urlEncodedData = $(this).serialize();
+
+  // validate input present and within 140 characters
+  let charCount = $('#tweet-text').val().length;
+  if (!charCount) return alert('Please do tweet!');
+  if (charCount > 140) return alert('Please tweet within 140 characters!')
+
+
+})
 
 });
