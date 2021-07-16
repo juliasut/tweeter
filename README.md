@@ -5,8 +5,13 @@ Tweeter is a simple, single-page Twitter clone.
 This project was built as a part of Lighthouse Labs Web Development Bootcamp curriculum. Practical aspects include: writting HTML, CSS, JS, jQuery and AJAX front-end skills, and Node, Express and MongoDB back-end skills.
 ## Final product
 
+# Posting a new tweet
 !["Posting new tweet"](https://github.com/juliasut/tweeter/blob/master/docs/post-new-tweet.gif)
+
+# Responsive design
 !["Responsive design"](https://github.com/juliasut/tweeter/blob/master/docs/responsive.gif)
+
+# Gentle reminder to post correctly
 !["Gentle reminder to post properly"](https://github.com/juliasut/tweeter/blob/master/docs/error_message.gif)
 
 ## Getting Started
