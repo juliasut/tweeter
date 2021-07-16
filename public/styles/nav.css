@@ -23,7 +23,14 @@ nav div {
   font-family: "Bungee", "sans-serif";
 }
 
+@keyframes bounce {
+  from { top: 65px; }
+  to { top: 68px; }
+  
+}
 nav .fa-angle-double-down {
   color: red;
-  align-self: center;
+  position: absolute;
+  right: 7rem;
+  animation: bounce 1s infinite;
 }
