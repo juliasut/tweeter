@@ -73,7 +73,7 @@ $(document).ready(function () {
     
     // Validate input to be present and within 140 characters
     if ($('textarea').val().length === 0) return $('#error-length-null').show().slideUp(2500);
-    if ($('textarea').val().length > 10) return $('#error-length-exceed').show().slideUp(2500);
+    if ($('textarea').val().length > 140) return $('#error-length-exceed').show().slideUp(2500);
     
     // Format data for the server into a query string 
     const serializedData = $(this).serialize();
